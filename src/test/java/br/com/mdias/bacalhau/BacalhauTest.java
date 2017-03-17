@@ -36,7 +36,7 @@ public class BacalhauTest extends SpringIntegrationTestCase {
 	@Test
 	public void inserindoOracleType() {
 		// 1. monta cenario
-		this.cleanAndInsert(dataSet("dataset-blanck-example.xml"));
+		this.cleanAndInsert(dataSet("dataset-blank-example.xml"));
 		BlankObjectExample objectExample = newObjectExample();
 
 		// 2. executa ação
@@ -52,7 +52,7 @@ public class BacalhauTest extends SpringIntegrationTestCase {
 	@Test
 	public void naoGravaObjectExamplePorqueIdEstaDuplicado() {
 		// 1. Monta cenario
-		this.cleanAndInsert(dataSet("dataset-blanck-example.xml"));
+		this.cleanAndInsert(dataSet("dataset-blank-example.xml"));
 		BlankObjectExample objectExample = newObjectExampleComIdRepetido();
 
 		thrown.expect(UncategorizedSQLException.class);
