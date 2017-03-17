@@ -1,6 +1,5 @@
 package br.com.mdias.bacalhau;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Assert;
@@ -25,7 +24,7 @@ public class BacalhauTest extends SpringIntegrationTestCase {
 	@Test
 	public void buscaDadosRetornandoOracleType() {
 		// 1. monta cenario
-		this.cleanAndInsert(dataSet("dataset-blanck-example.xml"));
+		this.cleanAndInsert(dataSet("dataset-blank-example.xml"));
 		// 2. executa ação
 		BlankObjectExample exampleObject = service.buscarCarga("Carga1");
 		// 3. resultado esperado
