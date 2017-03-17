@@ -1,0 +1,19 @@
+create or replace PACKAGE Oe_Globals AUTHID CURRENT_USER AS
+
+	G_FULL   CONSTANT VARCHAR2(1) := 'F';
+	
+	G_OPR_INSERT        CONSTANT    VARCHAR2(30) := 'INSERT';
+	G_OPR_CREATE        CONSTANT    VARCHAR2(30) := 'CREATE';
+	G_OPR_UPDATE        CONSTANT    VARCHAR2(30) := 'UPDATE';
+	G_OPR_DELETE        CONSTANT    VARCHAR2(30) := 'DELETE';
+	G_OPR_LOCK          CONSTANT    VARCHAR2(30) := 'LOCK';
+	G_OPR_NONE          CONSTANT    VARCHAR2(30) := FND_API.G_MISS_CHAR;
+
+END Oe_Globals;
+/
+
+create or replace PACKAGE BODY Oe_Globals AS
+
+
+END Oe_Globals;
+/

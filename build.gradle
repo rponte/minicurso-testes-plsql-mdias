@@ -1,0 +1,76 @@
+buildscript {
+	dependencies {
+		classpath fileTree(dir: "lib/oracle", include: '*.jar')
+	}
+}
+
+plugins {
+	id "org.flywaydb.flyway" version "4.0.3"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+eclipseJdt << {
+	ant.propertyfile(file: ".settings/org.eclipse.core.resources.prefs") {
+		ant.entry(key: "eclipse.preferences.version", value: "1")
+		ant.entry(key: "encoding/<project>", value: "utf-8")
+	}
+}
+
+/**
+ * Setting encoding during compilation in Production and Test classes
+ */
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+repositories {
+    jcenter()
+    maven {
+		url "https://oss.sonatype.org/content/groups/public/"
+	}
+}
+
+def springVersion = "4.3.2.RELEASE"
+def springDataVersion = "1.2.1.RELEASE"
+def dbunitVersion = "2.5.1"
+
+dependencies {
+
+	/**
+	 * Dependências das classes de produção
+	 */
+    compile "org.slf4j:slf4j-api:1.7.21"
+    compile "org.slf4j:jul-to-slf4j:1.7.21"
+    compile "org.slf4j:jcl-over-slf4j:1.7.21"
+    compile "org.slf4j:slf4j-log4j12:1.7.21"
+    /**
+	 * Spring
+	 */
+    compile "org.springframework:spring-core:${springVersion}"
+    compile "org.springframework:spring-context:${springVersion}"
+    compile "org.springframework:spring-tx:${springVersion}"
+    compile "org.springframework:spring-jdbc:${springVersion}"
+    compile "org.springframework.data:spring-data-oracle:${springDataVersion}"
+    
+    /**
+	 * Dependências dos testes automatizados
+	 */
+    testCompile "junit:junit:4.12"
+    testCompile "org.dbunit:dbunit:${dbunitVersion}"
+	testCompile "br.com.triadworks:dbunitmanager:1.0.1-SNAPSHOT"
+	testCompile "org.springframework:spring-test:${springVersion}"
+	
+	/**
+	 * Dependências fixas
+	 */
+	compile fileTree(dir: "lib/oracle", include: '*.jar')
+}
+
+task wrapper(type: Wrapper) {
+	description = "Generates gradlew[.bat] scripts"
+	gradleVersion = "2.14.1"
+}
