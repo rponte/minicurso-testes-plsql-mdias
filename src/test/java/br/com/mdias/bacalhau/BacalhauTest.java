@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.UncategorizedSQLException;
 
 import base.SpringIntegrationTestCase;
-import br.com.mdias.bacalhau.model.BlankObjectExample;
+import br.com.mdias.model.BlankObjectExample;
+import br.com.mdias.service.BacalhauService;
 import br.com.triadworks.dbunit.dataset.ClassPathDataSetSource;
 
 public class BacalhauTest extends SpringIntegrationTestCase {
@@ -110,9 +111,5 @@ public class BacalhauTest extends SpringIntegrationTestCase {
 	
 	private Date today() {
 		return new Date();
-	}
-	
-	private String toDate(Date date) {
-		return new SimpleDateFormat("yyyy-MM-dd").format(date);
 	}
 }

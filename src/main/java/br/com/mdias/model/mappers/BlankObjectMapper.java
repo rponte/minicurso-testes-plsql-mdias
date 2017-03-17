@@ -1,16 +1,15 @@
-package br.com.mdias.bacalhau.model.sqltypes;
+package br.com.mdias.model.mappers;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Struct;
 import java.sql.Timestamp;
-import java.util.Date;
 
 import org.springframework.jdbc.core.SqlReturnType;
 import org.springframework.jdbc.core.support.AbstractSqlTypeValue;
 
-import br.com.mdias.bacalhau.model.BlankObjectExample;
+import br.com.mdias.model.BlankObjectExample;
 import br.com.mdias.util.DataReader;
 
 /**

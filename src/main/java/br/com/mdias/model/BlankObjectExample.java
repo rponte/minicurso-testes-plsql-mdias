@@ -1,4 +1,4 @@
-package br.com.mdias.bacalhau.model;
+package br.com.mdias.model;
 
 import java.util.Date;
 

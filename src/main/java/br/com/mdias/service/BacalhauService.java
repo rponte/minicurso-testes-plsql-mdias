@@ -1,4 +1,4 @@
-package br.com.mdias.bacalhau;
+package br.com.mdias.service;
 
 import java.sql.Types;
 
@@ -12,8 +12,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Service;
 
-import br.com.mdias.bacalhau.model.BlankObjectExample;
-import br.com.mdias.bacalhau.model.sqltypes.BlankObjectMapper;
+import br.com.mdias.model.BlankObjectExample;
+import br.com.mdias.model.mappers.BlankObjectMapper;
 
 @Service
 public class BacalhauService {
