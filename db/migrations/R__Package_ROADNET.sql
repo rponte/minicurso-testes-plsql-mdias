@@ -40,15 +40,15 @@ create or replace PACKAGE body ROADNET AS
   
     -- regra #2, fluxo alternativo
     if uf_origem = 'CE' then
-      return 'Y';
+      return 'TRUE';
     end if;
   
     -- regra #1
-    if to_char(data_base, 'DY') = 'SAB' or to_char(data_base, 'DY') = 'DOM' then
-      return 'F';
+    if to_char(data_base, 'DY') = 'SÁB' or to_char(data_base, 'DY') = 'DOM' then
+      return 'FALSE';
     end if;
     
-    return 'Y';
+    return 'TRUE';
   end;
 
 END ROADNET;
