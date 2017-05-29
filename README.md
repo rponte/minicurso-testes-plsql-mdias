@@ -1,7 +1,7 @@
-Projeto om007-Tests
-====================
+Minicurso de testes automatizados para PLSQL
+============================================
 
-Projeto responsável por validar as regras de negócios das principais **Packages (procedures/functions)** do projeto **OM007**. Todos os testes automatizados são escritos em Java usando as seguintes tecnologias:
+Projeto utilizado para ministrar minicurso de como escrever testes automatizados em Java com jUnit para validar código PLSQL. Este projeto foi concebido para equipe FSW da MDIAS BRANCO. Todos os testes automatizados são escritos em Java usando as seguintes tecnologias:
 
 1. **jUnit**;
 2. **DbUnit**: biblioteca usada para limpar e popular as tabelas do banco de dados;
@@ -44,7 +44,7 @@ Para configurar o projeto siga os passos:
 1. Baixe o projeto do Git da empresa, basta clona-lo:
 
 ```shell
-git clone http://Ter00927@git.mdb.com.br/FSW/om007-tests
+git clone https://github.com/rponte/minicurso-testes-plsql-mdias.git
 ```
 
 2. Agora, precisamos configurar o Proxy da rede. Para isso, siga os seguinte comandos:
@@ -62,7 +62,7 @@ systemProp.https.nonProxyHosts=localhost|127.0.0.1|10.10.1.*
 
 2. Configure o projeto para ser importado pelo Eclipse (os arquivos `.project`, `.classpath` e `.settings` serão criados). Pode demorar um pouco ao executar este comando pela primeira vez, pois o Gradle precisará baixar todas as dependências do projeto:
 ```shell
-cd om007-tests
+cd minicurso-testes-plsql-mdias
 ./gradlew cleanEclipse eclipse
 ```
 
@@ -72,7 +72,7 @@ cd om007-tests
 Configurando o Banco de Dados
 -----------------------------
 
-Para rodar a bateria de testes é necessário ter um banco local, como o **Oracle XE**. Nesse caso, para manter o padrão da configuração do Oracle nas máquinas de todos os desenvolvedores, estamos mantendo um ambiente virtualizado via [VirtualBox](https://www.virtualbox.org/) e [Vagrant](http://www.vagrantup.com/). Portanto, você deve instalar estas ferramentas e configurar sua máquina para suportar virtualização via hardware. Siga os passos:
+Para rodar a bateria de testes é necessário ter um banco local, como o **Oracle 11g XE**. Nesse caso, para manter o padrão da configuração do Oracle nas máquinas de todos os desenvolvedores, estamos mantendo um ambiente virtualizado via [VirtualBox](https://www.virtualbox.org/) e [Vagrant](http://www.vagrantup.com/). Portanto, você deve instalar estas ferramentas e configurar sua máquina para suportar virtualização via hardware. Siga os passos:
 
 - Instale a [VirtualBox](https://www.virtualbox.org/) (recomenda-se a versão **5.1.6**);
 - Instale o [Vagrant](http://www.vagrantup.com/) (recomenda-se a versão **1.8.6**);
@@ -98,7 +98,7 @@ O Gradle está executando 3 comandos em sequência:
 
 Estes comandos podem ser executados individualmente.
 
-Após rodá-los, você deve ter o schema `MDB_IMDB_TEST` (configuração de conexão está no arquivo **gradle.properties**) criado no seu banco de dados com todos os objetos dentro. Use o SQL Developer para acessar este schema.
+Após rodá-los, você deve ter o schema `CURSO_TESTES_PLSQL` (configuração de conexão está no arquivo **gradle.properties**) criado no seu banco de dados com todos os objetos dentro. Use o SQL Developer para acessar este schema.
 
 **PS**: quer entender como Migrations funciona? Recomendo o [vídeo desta palestra](https://www.youtube.com/watch?v=BQICWePrLg0).
 
