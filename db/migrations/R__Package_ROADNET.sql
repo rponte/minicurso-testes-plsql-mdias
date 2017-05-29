@@ -44,7 +44,7 @@ create or replace PACKAGE body ROADNET AS
     end if;
   
     -- regra #1
-    if to_char(data_base, 'DY') = 'SÁB' or to_char(data_base, 'DY') = 'DOM' then
+    if to_char(data_base, 'DY') in ('SÁB', 'DOM') then
       return 'FALSE';
     end if;
     
