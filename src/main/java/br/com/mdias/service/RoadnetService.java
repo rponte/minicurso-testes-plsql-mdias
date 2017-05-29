@@ -62,7 +62,7 @@ public class RoadnetService {
 			)
 			.executeFunction(BigDecimal.class, in);
 		
-		return valor;
+		return valor.setScale(2);
 	}
 	
 }

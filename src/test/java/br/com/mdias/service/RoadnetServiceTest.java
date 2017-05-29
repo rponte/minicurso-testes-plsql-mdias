@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import base.SpringIntegrationTestCase;
+import br.com.triadworks.dbunit.dataset.ClassPathDataSetSource;
+import br.com.triadworks.dbunit.dataset.DataSetSource;
 
 public class RoadnetServiceTest extends SpringIntegrationTestCase {
 	
@@ -22,26 +24,32 @@ public class RoadnetServiceTest extends SpringIntegrationTestCase {
 		// cenário
 		String ufOrigem = "CE";
 		String ufDestino = "SP";
-				
+
+		DataSetSource dataSetSource = new ClassPathDataSetSource("datasets/dataset-fretes-e-valores.xml");
+		dbunitManager.cleanAndInsert(dataSetSource);
+		
 		// ação
 		BigDecimal valor = roadnet.calculaFrete(ufOrigem, ufDestino);
 		
 		// validação
 		BigDecimal valorEsperado = new BigDecimal("30.10");
-		assertEquals(valorEsperado, valor.setScale(2));
+		assertEquals(valorEsperado, valor);
 	}
 	
 	@Test
 	public void deveCalcularFreteEntre_CEeCE() {
 		// cenário
 		String ufOrigem = "CE";
+		
+		DataSetSource dataSetSource = new ClassPathDataSetSource("datasets/dataset-fretes-e-valores.xml");
+		dbunitManager.cleanAndInsert(dataSetSource);
 				
 		// ação
 		BigDecimal valor = roadnet.calculaFrete(ufOrigem, ufOrigem);
 		
 		// validação
 		BigDecimal valorEsperado = new BigDecimal("20.20");
-		assertEquals(valorEsperado, valor.setScale(2));
+		assertEquals(valorEsperado, valor);
 	}
 
 	@Test

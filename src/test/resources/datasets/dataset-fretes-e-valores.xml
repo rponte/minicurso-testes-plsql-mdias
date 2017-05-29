@@ -1,0 +1,11 @@
+<dataset>
+	<tb_frete_valor ID="1" 
+					UF_ORIGEM="CE" 
+					UF_DESTINO="SP" 
+					VALOR="30.10" />
+					
+	<tb_frete_valor ID="2" 
+					UF_ORIGEM="CE" 
+					UF_DESTINO="CE" 
+					VALOR="20.20" />
+</dataset>
