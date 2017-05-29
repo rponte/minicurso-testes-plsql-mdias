@@ -20,7 +20,7 @@ public class RoadnetServiceTest extends SpringIntegrationTestCase {
 	private RoadnetService roadnet;
 	
 	@Test
-	public void deveCalcularFreteEntre_CEeSP() {
+	public void deveCalcularFrete_entreEstadosDiferentes() {
 		// cenário
 		String ufOrigem = "CE";
 		String ufDestino = "SP";
@@ -37,7 +37,7 @@ public class RoadnetServiceTest extends SpringIntegrationTestCase {
 	}
 	
 	@Test
-	public void deveCalcularFreteEntre_CEeCE() {
+	public void deveCalcularFrete_dentroDoMesmoEstado() {
 		// cenário
 		String ufOrigem = "CE";
 		
