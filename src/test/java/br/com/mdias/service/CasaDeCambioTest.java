@@ -18,5 +18,18 @@ public class CasaDeCambioTest {
 		// validação
 		assertEquals(9200, valorEmBitcoin, 0.001);
 	}
+	
+	@Test
+	public void deveConverterValorEmRealParaDolar() {
+		// cenário
+		double valorEmReal = 1;
+
+		// ação
+		CasaDeCambio cambio = new CasaDeCambio();
+		double valorEmDolar = cambio.converteRealParaDolar(valorEmReal);
+
+		// validação
+		assertEquals(3.55, valorEmDolar, 0.001);
+	}
 
 }

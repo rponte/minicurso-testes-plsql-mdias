@@ -7,4 +7,9 @@ public class CasaDeCambio {
 		return valorEmReal * 9200;
 	}
 	
+	public double converteRealParaDolar(double valorEmReal) {
+		
+		return valorEmReal * 3.55;
+	}
+	
 }
