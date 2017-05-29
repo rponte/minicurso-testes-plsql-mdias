@@ -3,9 +3,20 @@
  */
 create or replace PACKAGE ROADNET AS 
 
+  /**
+   * Verifica se determinada data eh dia util
+   */
   function is_dia_util(data_base date, uf_origem varchar2) return varchar2;
 
+  /**
+   * Calcula frente entre dois estados
+   */
   function calcula_frete(p_uf_origem varchar2, p_uf_destino varchar2) return number;
+  
+  /**
+   * Aplica desconto especial no valor do frete de acordo com o estado
+   */
+  function aplica_desconto_especial(p_uf varchar2, p_valor_frete number) return number;
 
 END ROADNET;
 /
@@ -15,6 +26,9 @@ END ROADNET;
  */
 create or replace PACKAGE body ROADNET AS 
 
+  /**
+   * Aplica desconto especial no valor do frete de acordo com o estado
+   */
   function aplica_desconto_especial(p_uf varchar2, p_valor_frete number) return number is
     DESCONTO_10_PORCENTO  constant number := 0.9;
     DESCONTO_5_PORCENTO   constant number := 0.95;
@@ -26,6 +40,9 @@ create or replace PACKAGE body ROADNET AS
     return p_valor_frete * DESCONTO_5_PORCENTO;
   end;
 
+  /**
+   * Calcula frente entre dois estados
+   */
   function calcula_frete(p_uf_origem varchar2, p_uf_destino varchar2) return number is
     valor_frete  number;
   begin
@@ -46,7 +63,10 @@ create or replace PACKAGE body ROADNET AS
     when no_data_found then
       raise_application_error(-20001, 'Valor do frete nao encontrado');
   end;
-   
+
+  /**
+   * Verifica se determinada data eh dia util
+   */
   function is_dia_util(data_base date, uf_origem varchar2) return varchar2 is
   begin
   
