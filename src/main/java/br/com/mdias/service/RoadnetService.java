@@ -1,5 +1,6 @@
 package br.com.mdias.service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.sql.DataSource;
@@ -40,6 +41,28 @@ public class RoadnetService {
 			.executeFunction(String.class, in);
 		
 		return "TRUE".equals(ehDiaUtil);
+	}
+
+	public BigDecimal calculaFrete(String ufOrigem, String ufDestino) {
+		
+		SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("uf_origem", ufOrigem)
+				.addValue("uf_destino", ufDestino)
+				;
+		
+		BigDecimal valor = new SimpleJdbcCall(dataSource)
+			.withoutProcedureColumnMetaDataAccess()
+			.withCatalogName("ROADNET")
+			.withFunctionName("calcula_frete")
+			.withReturnValue()
+			.declareParameters(
+				new SqlOutParameter("RETURN", OracleTypes.NUMBER),
+				new SqlParameter("uf_origem", OracleTypes.VARCHAR),
+				new SqlParameter("uf_destino", OracleTypes.VARCHAR)
+			)
+			.executeFunction(BigDecimal.class, in);
+		
+		return valor;
 	}
 	
 }

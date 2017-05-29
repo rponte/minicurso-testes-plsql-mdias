@@ -2,6 +2,7 @@ package br.com.mdias.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +16,33 @@ public class RoadnetServiceTest extends SpringIntegrationTestCase {
 	
 	@Autowired
 	private RoadnetService roadnet;
+	
+	@Test
+	public void deveCalcularFreteEntre_CEeSP() {
+		// cenário
+		String ufOrigem = "CE";
+		String ufDestino = "SP";
+				
+		// ação
+		BigDecimal valor = roadnet.calculaFrete(ufOrigem, ufDestino);
+		
+		// validação
+		BigDecimal valorEsperado = new BigDecimal("30.10");
+		assertEquals(valorEsperado, valor.setScale(2));
+	}
+	
+	@Test
+	public void deveCalcularFreteEntre_CEeCE() {
+		// cenário
+		String ufOrigem = "CE";
+				
+		// ação
+		BigDecimal valor = roadnet.calculaFrete(ufOrigem, ufOrigem);
+		
+		// validação
+		BigDecimal valorEsperado = new BigDecimal("20.20");
+		assertEquals(valorEsperado, valor.setScale(2));
+	}
 
 	@Test
 	public void deveSegundaFeiraSerDiaUtil() {
