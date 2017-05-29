@@ -15,6 +15,17 @@ END ROADNET;
  */
 create or replace PACKAGE body ROADNET AS 
 
+  function aplica_desconto_especial(p_uf varchar2, p_valor_frete number) return number is
+    DESCONTO_10_PORCENTO  constant number := 0.9;
+    DESCONTO_5_PORCENTO   constant number := 0.95;
+  begin
+    if p_uf = 'CE' then
+      return p_valor_frete * DESCONTO_10_PORCENTO;
+    end if;
+    
+    return p_valor_frete * DESCONTO_5_PORCENTO;
+  end;
+
   function calcula_frete(p_uf_origem varchar2, p_uf_destino varchar2) return number is
     valor_frete  number;
   begin
@@ -27,11 +38,7 @@ create or replace PACKAGE body ROADNET AS
       ;
   
     if p_uf_origem = p_uf_destino then
-      if p_uf_origem = 'CE' then
-        valor_frete := valor_frete * 0.9; -- aplica desconto de 10%
-      else 
-        valor_frete := valor_frete * 0.95; -- aplica desconto de 5%
-      end if;
+      valor_frete := aplica_desconto_especial(p_uf_origem, valor_frete);
     end if;
   
     return valor_frete;

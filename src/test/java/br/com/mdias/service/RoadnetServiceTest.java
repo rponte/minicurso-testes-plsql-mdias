@@ -24,6 +24,33 @@ public class RoadnetServiceTest extends SpringIntegrationTestCase {
 	@Autowired
 	private RoadnetService roadnet;
 	
+	
+	@Test
+	public void deveAplicarDescontoDe10Porcento_quandoEstadoIgualACeara() {
+		// cenário
+		String ceara = "CE";
+		
+		// ação
+		BigDecimal valorComDesconto = roadnet.aplicaDescontoEspecial(ceara, new BigDecimal("100.0"));
+		
+		// validação
+		BigDecimal valorEsperado = new BigDecimal("90.00");
+		assertEquals(valorEsperado, valorComDesconto);
+	}
+	
+	@Test
+	public void deveAplicarDescontoDe5Porcento_quandoEstadoDiferenteDeCeara() {
+		// cenário
+		String ceara = "SP";
+
+		// ação
+		BigDecimal valorComDesconto = roadnet.aplicaDescontoEspecial(ceara, new BigDecimal("100.0"));
+
+		// validação
+		BigDecimal valorEsperado = new BigDecimal("95.00");
+		assertEquals(valorEsperado, valorComDesconto);
+	}
+	
 	@Test
 	public void naoDeveCalcularFreteQuandoNaoEncontrarEstados() {
 		// cenário

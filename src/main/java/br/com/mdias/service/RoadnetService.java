@@ -64,5 +64,27 @@ public class RoadnetService {
 		
 		return valor.setScale(2);
 	}
+
+	public BigDecimal aplicaDescontoEspecial(String uf, BigDecimal valorDoFrete) {
+		
+		SqlParameterSource in = new MapSqlParameterSource()
+				.addValue("p_uf", uf)
+				.addValue("p_valor_frete", valorDoFrete)
+				;
+		
+		BigDecimal valor = new SimpleJdbcCall(dataSource)
+			.withoutProcedureColumnMetaDataAccess()
+			.withCatalogName("ROADNET")
+			.withFunctionName("aplica_desconto_especial")
+			.withReturnValue()
+			.declareParameters(
+				new SqlOutParameter("RETURN", OracleTypes.NUMBER),
+				new SqlParameter("p_uf", OracleTypes.VARCHAR),
+				new SqlParameter("p_valor_frete", OracleTypes.NUMBER)
+			)
+			.executeFunction(BigDecimal.class, in);
+		
+		return valor.setScale(2);
+	}
 	
 }
