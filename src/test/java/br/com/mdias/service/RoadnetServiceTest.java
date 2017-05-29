@@ -69,7 +69,7 @@ public class RoadnetServiceTest extends SpringIntegrationTestCase {
 		BigDecimal valor = roadnet.calculaFrete(ufOrigem, ufOrigem);
 		
 		// validação
-		BigDecimal valorEsperado = new BigDecimal("20.20");
+		BigDecimal valorEsperado = new BigDecimal("18.18");
 		assertEquals(valorEsperado, valor);
 	}
 

@@ -26,6 +26,14 @@ create or replace PACKAGE body ROADNET AS
         and fv.UF_DESTINO = p_uf_destino
       ;
   
+    if p_uf_origem = p_uf_destino then
+      if p_uf_origem = 'CE' then
+        valor_frete := valor_frete * 0.9; -- aplica desconto de 10%
+      else 
+        valor_frete := valor_frete * 0.95; -- aplica desconto de 5%
+      end if;
+    end if;
+  
     return valor_frete;
   exception
     when no_data_found then
