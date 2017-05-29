@@ -7,7 +7,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import base.SpringIntegrationTestCase;
@@ -15,9 +17,28 @@ import br.com.triadworks.dbunit.dataset.ClassPathDataSetSource;
 import br.com.triadworks.dbunit.dataset.DataSetSource;
 
 public class RoadnetServiceTest extends SpringIntegrationTestCase {
+
+	@Rule
+	public ExpectedException observadorDeExcecoes = ExpectedException.none();
 	
 	@Autowired
 	private RoadnetService roadnet;
+	
+	@Test
+	public void naoDeveCalcularFreteQuandoNaoEncontrarEstados() {
+		// cenário
+		String ufOrigem = "CE";
+		String ufDestinoQueNaoExiste = "uf-que-nao-existe";
+
+		DataSetSource dataSetSource = new ClassPathDataSetSource("datasets/dataset-fretes-e-valores.xml");
+		dbunitManager.cleanAndInsert(dataSetSource);
+
+		observadorDeExcecoes.expect(RuntimeException.class);
+		observadorDeExcecoes.expectMessage("ORA-20001: Valor do frete nao encontrado");
+		
+		// ação
+		roadnet.calculaFrete(ufOrigem, ufDestinoQueNaoExiste);
+	}
 	
 	@Test
 	public void deveCalcularFrete_entreEstadosDiferentes() {

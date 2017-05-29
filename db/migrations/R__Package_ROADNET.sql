@@ -27,6 +27,9 @@ create or replace PACKAGE body ROADNET AS
       ;
   
     return valor_frete;
+  exception
+    when no_data_found then
+      raise_application_error(-20001, 'Valor do frete nao encontrado');
   end;
    
   function is_dia_util(data_base date, uf_origem varchar2) return varchar2 is
