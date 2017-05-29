@@ -58,16 +58,17 @@ systemProp.https.proxyHost=mdbpx.mdb.com.br
 systemProp.https.proxyPort=8090
 systemProp.https.nonProxyHosts=localhost|127.0.0.1|10.10.1.*
 ```
-	- Atualize as informações se necessário;
 
-2. Configure o projeto para ser importado pelo Eclipse (os arquivos `.project`, `.classpath` e `.settings` serão criados). Pode demorar um pouco ao executar este comando pela primeira vez, pois o Gradle precisará baixar todas as dependências do projeto:
+3. Atualize as informações se necessário;
+
+4. Configure o projeto para ser importado pelo Eclipse (os arquivos `.project`, `.classpath` e `.settings` serão criados). Pode demorar um pouco ao executar este comando pela primeira vez, pois o Gradle precisará baixar todas as dependências do projeto:
 ```shell
 cd minicurso-testes-plsql-mdias
 ./gradlew cleanEclipse eclipse
 ```
 
-3. Importe o projeto no Eclipse;
-4. (opcional) Caso não tenha o Java 8, configure o projeto no Eclipse para apontar para o Java 7;
+5. Importe o projeto no Eclipse;
+6. (opcional) Caso não tenha o Java 8, configure o projeto no Eclipse para apontar para o Java 7;
 
 Configurando o Banco de Dados
 -----------------------------
